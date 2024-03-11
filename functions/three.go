@@ -5,6 +5,8 @@ import (
 	"sort"
 )
 
+//calculate hand type
+
 //Complete the function f that computes the ranking of a poker hand. The input is consisted of five integers that represent different poker cards.
 //Belows are the correspoding relationship between each interger(for better reading, the integer is shown in hexadecimal) and poker card:
 //
