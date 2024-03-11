@@ -2,7 +2,8 @@ package functions
 
 import "fmt"
 
-//sort the array in ascending order
+//Complete the function f that sorts an integer array by ascending order. For example, given array 2 1, function f should output 1 2.
+
 func Two(input []int) string {
 	//sort the array in ascending order
 	for i := 0; i < len(input); i++ {

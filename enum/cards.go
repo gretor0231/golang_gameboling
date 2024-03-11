@@ -1,70 +1,23 @@
 package enum
 
-type CardValue int
+type Cards []Card
 
-const (
-	// Diamond
-	TwoDiamond CardValue = iota + 0x102
-	ThreeDiamond
-	FourDiamond
-	FiveDiamond
-	SixDiamond
-	SevenDiamond
-	EightDiamond
-	NineDiamond
-	TenDiamond
-	JackDiamond
-	QueenDiamond
-	KingDiamond
-	AceDiamond
+func ConvertToCards(inputVal []int) Cards {
+	var cards []Card
+	for _, val := range inputVal {
+		cards = append(cards, Card{
+			Suit:   Suit(val / 0x100),
+			Number: val % 0x100,
+		})
+	}
+	for k, v := range cards {
+		if v.Number == 14 {
+			cards[k].Number = 1
+		}
+	}
 
-	// Club
-	TwoClub CardValue = iota + 0x202
-	ThreeClub
-	FourClub
-	FiveClub
-	SixClub
-	SevenClub
-	EightClub
-	NineClub
-	TenClub
-	JackClub
-	QueenClub
-	KingClub
-	AceClub
-
-	// Heart
-	TwoHeart CardValue = iota + 0x302
-	ThreeHeart
-	FourHeart
-	FiveHeart
-	SixHeart
-	SevenHeart
-	EightHeart
-	NineHeart
-	TenHeart
-	JackHeart
-	QueenHeart
-	KingHeart
-	AceHeart
-
-	// Spade
-	TwoSpade CardValue = iota + 0x402
-	ThreeSpade
-	FourSpade
-	FiveSpade
-	SixSpade
-	SevenSpade
-	EightSpade
-	NineSpade
-	TenSpade
-	JackSpade
-	QueenSpade
-	KingSpade
-	AceSpade
-)
-
-type Cards []CardValue
+	return cards
+}
 
 func (c Cards) Len() int {
 	return len(c)
@@ -75,7 +28,7 @@ func (c Cards) Swap(i, j int) {
 	c[i], c[j] = c[j], c[i]
 }
 
-// Less compares the age of two people
+// Less compares two card number
 func (c Cards) Less(i, j int) bool {
-	return c[i] < c[j]
+	return c[i].Number < c[j].Number
 }
